@@ -44,7 +44,7 @@ HTML 是用来描述网页的一种语言。
 
 ### HTML标签  
 
-HTML 标签是 1.由*尖括号*包围的关键词，比如 `<html>`；2.成对出现；3.开始标签(开放标签)、结束标签(闭合标签)
+HTML 标签是 1.由*尖括号*包围的关键词；2.成对出现；3.开始标签(开放标签)、结束标签(闭合标签)
 
 标准标签请参考： [标签参考手册](<https://www.w3school.com.cn/tags/index.asp>)， [标签参考手册-功能分类](<https://www.w3school.com.cn/tags/html_ref_byfunc.asp>)
 
