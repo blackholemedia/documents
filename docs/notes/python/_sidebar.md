@@ -1,0 +1,8 @@
+* [Python](/notes/python/)
+	* [函数闭包](/notes/python/函数闭包.md "函数闭包")
+	* [12步轻松搞定python装饰器](/notes/python/12步轻松搞定python装饰器.md "12步轻松搞定python装饰器")
+	* [Python notes](/notes/python/python_notes.md "Python notes")
+	* [Python格式化输出](/notes/python/Python格式化输出.md "Python格式化输出")
+	* [Python类的继承、属性、方法](/notes/python/python类的继承、属性、方法.md "Python类的继承、属性、方法")
+	* [Python装饰器](/notes/python/Python装饰器.md "Python装饰器")
+	* [Yield](/notes/python/yield.md "Yield")
