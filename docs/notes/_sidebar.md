@@ -5,5 +5,6 @@
 	* [Django](/notes/django/)
 	* [Front End](/notes/front_end/)
 	* [Architecture](/notes/architecture/)
+	* [Network](/notes/network/)
 	* [Rasa](/notes/rasa/)
 	* [Others](/notes/others/)
