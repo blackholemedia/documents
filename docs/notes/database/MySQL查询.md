@@ -15,11 +15,20 @@ Table of Contents
 Created by ALTA
 # MySQL查询  
 
+## 阅读说明  
+
 <font color=#008000>绿色字体</font>代表个人的思考理解，<font color=Yellow>黄色字体</font>代表阅读理解过程中的疑问，<font color=Red>红色字体</font>代表关键重要信息，<u>下划线</u>代表次关键重要信息，`阴影`或 *一般斜体* 均表示引用或强调 
 
 ```python
 # ---------------------------------- 输出结果
 ```
+
+## 参考引用  
+
+本文引用及参考自下列文章/网站：
+
+1. [SQL逻辑查询语句执行顺序](https://www.cnblogs.com/wangfengming/articles/7880312.html)
+2. [多表查询](<https://www.cnblogs.com/bypp/p/8618382.html>)
 
 ## SQL逻辑查询语句执行顺序  
 
@@ -58,7 +67,7 @@ Created by ALTA
    select * from person,dept where person.did = dept.did;
    ```
 
-   ![](../statics/join_query.png)
+   ![](../../pics/join_query.png)
 
    
 
@@ -73,7 +82,7 @@ ON 表1.字段 = 表2.字段;
 
 1. 内连接查询(效果与多表联合查询一样)
 
-   ![](../statics/join_query.png)
+   ![](../../pics/join_query.png)
 
    ```mysql
    select * from person inner join dept  on person.did =dept.did;
@@ -81,7 +90,7 @@ ON 表1.字段 = 表2.字段;
 
 2. 左外连接查询(左边表中的数据优先全部显示)
 
-   ![](../statics/left_query.png)
+   ![](../../pics/left_query.png)
 
    ```mysql
    #查询人员和部门所有信息
