@@ -7,4 +7,5 @@
 	* [Architecture](/notes/architecture/)
 	* [Network](/notes/network/)
 	* [Rasa](/notes/rasa/)
+	* [Test](/notes/test/)
 	* [Others](/notes/others/)
