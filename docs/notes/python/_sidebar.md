@@ -5,3 +5,6 @@
 	* [Python类的继承、属性、方法](/notes/python/python类的继承、属性、方法.md "Python类的继承、属性、方法")
 	* [Python装饰器](/notes/python/Python装饰器.md "Python装饰器")
 	* [Yield](/notes/python/yield.md "Yield")
+	* [魔术方法](/notes/python/magic_methods.md "魔术方法")
+	* [元类](/notes/python/meta_class.md "元类")
+
