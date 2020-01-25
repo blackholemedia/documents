@@ -8,4 +8,6 @@
 	* [Network](/notes/network/)
 	* [Rasa](/notes/rasa/)
 	* [Test](/notes/test/)
+	* [Algorithm](/notes/algorithm/)
+	* [Modern Control System](/notes/mcs/)
 	* [Others](/notes/others/)
