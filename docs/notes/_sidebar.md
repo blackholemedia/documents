@@ -10,4 +10,6 @@
 	* [Test](/notes/test/)
 	* [Algorithm](/notes/algorithm/)
 	* [Modern Control System](/notes/mcs/)
+	* [Mathematics](/notes/mathematics/)
 	* [Others](/notes/others/)
+
