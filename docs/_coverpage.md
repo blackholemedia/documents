@@ -1,4 +1,4 @@
-![logo](https://docsify.js.org/_media/icon.svg)
+![logo](./pics/iconfinder_mac_os_X_395229.png)
 
 # 彼岸无渡
 
