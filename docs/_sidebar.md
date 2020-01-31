@@ -1,3 +1,4 @@
 * [Home](/)
-* [Notes](/notes/  )
+* [Programming](/programming/ "Programming")
+* [Nature Science](/nature_science/ "Nature Science")
 
