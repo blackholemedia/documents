@@ -26,9 +26,9 @@ Created by ALTA
 
 ## 参考引用  
 
-本文引用及参考自下列文章/网站
+本文引用及参考自下列文章/网站， 版权归属原作者所有：
 
-[HTML DOM教程](https://www.w3school.com.cn/htmldom/index.asp)
+1. [HTML DOM教程](https://www.w3school.com.cn/htmldom/index.asp)
 
 
 ## 基本概念  

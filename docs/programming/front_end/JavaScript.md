@@ -26,7 +26,7 @@ Created by ALTA
 
 ## 参考引用  
 
-本文引用及参考自下列文章/网站：
+本文引用及参考自下列文章/网站， 版权归属原作者所有：
 
 1. [JavaScript 教程](<https://www.w3school.com.cn/js/index.asp>)
 

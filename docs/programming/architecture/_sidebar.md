@@ -1,2 +1,2 @@
 * [Architecture](/programming/architecture/)
-	* [并发并行异步同步](/programming/architecture/并发并行异步同步.md "并发并行异步同步")
+	* [并发及异步编程](/programming/architecture/并发及异步编程.md "并发及异步编程")
