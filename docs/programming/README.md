@@ -2,7 +2,6 @@
 
 > Just some notes about programming.
 
-## 计算机基础课程  
 
 ### 数学基础课  
 

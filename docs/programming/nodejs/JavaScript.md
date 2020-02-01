@@ -3,7 +3,8 @@ Table of Contents
 =================
 
    * [JavaScript](#javascript)
-      * [关键词](#关键词)
+      * [阅读说明](#阅读说明)
+      * [参考引用](#参考引用)
       * [关键叙述](#关键叙述)
          * [定义](#定义)
          * [基本语法](#基本语法)
@@ -33,12 +34,21 @@ Table of Contents
          * [抛出错误](#抛出错误)
          * [异步错误处理](#异步错误处理)
 
-Created by [I am your father]
+Created by ALTA
 # JavaScript  
-回调函数  
-非阻塞I/O  
-事件循环  
-事件驱动  
+## 阅读说明  
+
+<font color=#008000>绿色字体</font>代表个人的思考理解，<font color=Yellow>黄色字体</font>代表阅读理解过程中的疑问，<font color=Red>红色字体</font>代表关键重要信息，<u>下划线</u>代表次关键重要信息，`阴影`或 *一般斜体* 均表示引用或强调 
+
+```python
+# ---------------------------------- 输出结果
+```
+
+## 参考引用  
+
+本文引用及参考自下列文章/网站， 版权归属原作者所有：
+
+1. [JavaScript教程](https://www.liaoxuefeng.com/wiki/1022910821149312)
 
 ## 关键叙述  
 ### 定义  
@@ -703,3 +713,4 @@ try {
 ```
 
 在于调用`setTimeout()`函数时，传入的`printTime`函数并未立刻执行！紧接着，JavaScript引擎会继续执行`console.log('done');`语句，而此时并没有错误发生。直到1秒钟后，执行`printTime`函数时才发生错误，但此时除了在`printTime`函数内部捕获错误外，外层代码并无法捕获
+
