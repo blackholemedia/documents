@@ -67,7 +67,7 @@ Created by ALTA
    select * from person,dept where person.did = dept.did;
    ```
 
-   ![](../../pics/join_query.png)
+   ![](../../statics/join_query.png)
 
    
 
@@ -82,7 +82,7 @@ ON 表1.字段 = 表2.字段;
 
 1. 内连接查询(效果与多表联合查询一样)
 
-   ![](../../pics/join_query.png)
+   ![](../../statics/join_query.png)
 
    ```mysql
    select * from person inner join dept  on person.did =dept.did;
@@ -90,7 +90,7 @@ ON 表1.字段 = 表2.字段;
 
 2. 左外连接查询(左边表中的数据优先全部显示)
 
-   ![](../../pics/left_query.png)
+   ![](../../statics/left_query.png)
 
    ```mysql
    #查询人员和部门所有信息

@@ -45,7 +45,7 @@ Created by ALTA
 
 TCP/IP参考模型包含如下分层：
 
-![](../../pics/osi_tcp_ip.jpeg)
+![](../../statics/osi_tcp_ip.jpeg)
 
 1. 应用层包含的主要协议：
 
@@ -75,3 +75,4 @@ TCP位于传输层， <font color=Red>提供可靠的字节流服务</font>，�
 ### IP  
 
 IP位于网络层，<font color=Red>提供网络传送服务服务，把各种数据包传送给对方</font>， 为实现传送包含如下内容：IP地址和MAC地址
+

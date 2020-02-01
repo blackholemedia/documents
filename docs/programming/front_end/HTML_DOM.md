@@ -59,7 +59,7 @@ HTML DOM 定义了所有 HTML 元素的**对象**和**属性**，以及访问它
 
 通过 HTML DOM，树中的所有节点均可通过 JavaScript 进行访问。所有 HTML 元素（节点）均可被修改，也可以创建或删除节点。  
 
-![dom_tree](../pics/dom_tree.png)
+![dom_tree](../../statics/dom_tree.png)
 
 ### HTML DOM 方法与属性 
 

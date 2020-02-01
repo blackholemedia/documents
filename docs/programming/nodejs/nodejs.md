@@ -119,7 +119,7 @@ Web服务器一般指网站服务器，是指驻留于因特网上某种类型�
 
 ## Web应用架构
 
-![Web应用架构](https://blackholemedia.github.io/documents/pics/web_architecture.jpg)  
+![Web应用架构](https://blackholemedia.github.io/documents/statics/web_architecture.jpg)  
 
 - **Client** - 客户端，一般指浏览器，浏览器可以通过 HTTP 协议向服务器请求数据  
 
