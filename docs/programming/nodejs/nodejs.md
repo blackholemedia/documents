@@ -2,25 +2,45 @@
 Table of Contents
 =================
 
-   * [Node.JS](#nodejs)
+   * [Node JS](#node-js)
+      * [阅读说明](#阅读说明)
+      * [参考引用](#参考引用)
       * [关键词](#关键词)
+      * [回调函数](#回调函数)
       * [同步/异步，阻塞/非阻塞](#同步异步阻塞非阻塞)
       * [Web应用架构](#web应用架构)
+      * [事件创建与触发](#事件创建与触发)
       * [模块](#模块)
       * [基本模块](#基本模块)
          * [fs](#fs)
+         * [stream](#stream)
+         * [http](#http)
 
-Created by [I am your father]
-# Node.JS  
+Created by ALTA
+# Node JS  
+
+<font color=#008000>绿色字体</font>代表个人的思考理解，<font color=Yellow>黄色字体</font>代表阅读理解过程中的疑问，<font color=Red>红色字体</font>代表关键重要信息，<u>下划线</u>代表次关键重要信息，`阴影`或 *一般斜体* 均表示引用或强调 
+
+```python
+# ---------------------------------- 输出结果
+```
+
+## 参考引用  
+
+本文引用及参考自下列文章/网站， 版权归属原作者所有：
+
+1. [彻底理解JS中的回调函数](https://blog.csdn.net/rockage/article/details/79513450)
+
 ## 关键词  
-事件驱动  
-非阻塞I/O  
-事件循环  
-回调函数  [NodeJs中的回调函数](https://blog.csdn.net/mimikuer/article/details/78871187)  
+
+-  事件驱动  
+- 非阻塞IO  
+- 事件循环  
+- 回调函数([NodeJs中的回调函数](https://blog.csdn.net/mimikuer/article/details/78871187))
 
 ## 回调函数  
 
-回调函数，就是放在另外一个函数（如 parent）的参数列表中，作为参数传递给这个 parent，然后在 parent 函数体的某个位置执行。如下代码，首先定义一个f1 函数，它有一个参数 callback，这个 callback 就是回调函数，名字可以任意取。在函数体中，定义了三个变量 a,b,c。然后调用 callback 函数，最后返回一个值。这里我们并不知道callback这个回调函数是干什么的，因为没有定义它的功能，它只是有三个参数。然后调用f1 函数，这时候我们就需要指定 callback 具体要实现什么了，可以看到，它完成了一个 求和的功能。**定义的时候只定义形参，调用的时候定义函数功能**  
+回调函数，就是放在另外一个函数（如 parent）的参数列表中，作为参数传递给这个 parent，然后在 parent 函数体的某个位置执行。如下代码，首先定义一个f1 函数，它有一个参数 callback，这个 callback 就是回调函数，名字可以任意取。在函数体中，定义了三个变量 a,b,c。然后调用 callback 函数，最后返回一个值。这里我们并不知道callback这个回调函数是干什么的，因为没有定义它的功能，它只是有三个参数。然后调用f1 函数，这时候我们就需要指定 callback 具体要实现什么了，可以看到，它完成了一个 求和的功能。**定义的时候只定义形参，调用的时候定义函数功能**   
 
 ```javascript
 var f1 = function(callback)
@@ -97,7 +117,7 @@ Web服务器一般指网站服务器，是指驻留于因特网上某种类型�
 
 ## Web应用架构
 
-![Web应用架构](./statics/web_architecture.jpg)  
+![Web应用架构](https://blackholemedia.github.io/documents/pics/web_architecture.jpg)  
 
 - **Client** - 客户端，一般指浏览器，浏览器可以通过 HTTP 协议向服务器请求数据  
 - **Server** - 服务端，一般指 Web 服务器，可以接收客户端请求，并向客户端发送响应数据  
@@ -172,21 +192,21 @@ module.exports = {
 
 1. 异步读文件
 
-```javascript
-'use strict';
+   ```javascript
+   'use strict';
+   
+   var fs = require('fs');
+   
+   fs.readFile('sample.txt', 'utf-8', function (err, data) {
+       if (err) {
+           console.log(err);
+       } else {
+           console.log(data);
+       }
+   });
+   ```
 
-var fs = require('fs');
-
-fs.readFile('sample.txt', 'utf-8', function (err, data) {
-    if (err) {
-        console.log(err);
-    } else {
-        console.log(data);
-    }
-});
-```
-
-异步读取时，传入的回调函数接收两个参数，当正常读取时，`err`参数为`null`，`data`参数为读取到的String。当读取发生错误时，`err`参数代表一个错误对象，`data`为`undefined`。这也是Node.js标准的回调函数：第一个参数代表错误信息，第二个参数代表结果。
+   异步读取时，传入的回调函数接收两个参数，当正常读取时，`err`参数为`null`，`data`参数为读取到的String。当读取发生错误时，`err`参数代表一个错误对象，`data`为`undefined`。这也是Node.js标准的回调函数：第一个参数代表错误信息，第二个参数代表结果。
 
 2. 同步读文件  
 
@@ -228,35 +248,36 @@ fs.readFile('sample.txt', 'utf-8', function (err, data) {
 
 ### http  
 
-1. HTTP服务器  
-  要开发HTTP服务器程序，从头处理TCP连接，解析HTTP是不现实的。这些工作实际上已经由Node.js自带的http模块完成了。应用程序并不直接和HTTP协议打交道，而是操作http模块提供的request和response对象.  
-  `request`对象封装了HTTP请求，我们调用`request`对象的属性和方法就可以拿到所有HTTP请求的信息；*疑问：request对象是如何获得HTTP的请求信息的？*  
-  `response`对象封装了HTTP响应，我们操作`response`对象的方法，就可以把HTTP响应返回给浏览器
-
-```javascript
-  'use strict';
-  
-  // 导入http模块:
-  var http = require('http');
-  
-  // 创建http server，并传入回调函数:
-  var server = http.createServer(function (request, response) {
-      // 回调函数接收request和response对象,
-      // 获得HTTP请求的method和url:
-      console.log(request.method + ': ' + request.url);
-      // 将HTTP响应200写入response, 同时设置Content-Type: text/html:
-      response.writeHead(200, {'Content-Type': 'text/html'});
-      // 将HTTP响应的HTML内容写入response:
-      response.end('<h1>Hello world!</h1>');
-  });
-  
-  // 让服务器监听8080端口:
-  server.listen(8080);
-  console.log('Server is running at http://127.0.0.1:8080/');
-```
-
-
 详细参考： [http](https://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000/0014345015296018cac40c198b543fead5c549865b9bd4a000)  
 
+1. HTTP服务器
 
+   要开发HTTP服务器程序，从头处理TCP连接，解析HTTP是不现实的。这些工作实际上已经由Node.js自带的http模块完成了。应用程序并不直接和HTTP协议打交道，而是操作http模块提供的request和response对象.   
 
+   `request`对象封装了HTTP请求，我们调用`request`对象的属性和方法就可以拿到所有HTTP请求的信息；*疑问：request对象是如何获得HTTP的请求信息的？*  
+
+   response`对象封装了HTTP响应，我们操作`response`对象的方法，就可以把HTTP响应返回给浏览器  
+
+   ```javascript
+    'use strict';
+     
+     // 导入http模块:
+     var http = require('http');
+     
+     // 创建http server，并传入回调函数:
+     var server = http.createServer(function (request, response) {
+         // 回调函数接收request和response对象,
+         // 获得HTTP请求的method和url:
+         console.log(request.method + ': ' + request.url);
+         // 将HTTP响应200写入response, 同时设置Content-Type: text/html:
+         response.writeHead(200, {'Content-Type': 'text/html'});
+         // 将HTTP响应的HTML内容写入response:
+         response.end('<h1>Hello world!</h1>');
+     });
+     
+     // 让服务器监听8080端口:
+     server.listen(8080);
+     console.log('Server is running at http://127.0.0.1:8080/');
+   ```
+
+   
