@@ -24,6 +24,7 @@ Created by ALTA
 
 1. [Python必会的单元测试框架 —— unittest](https://www.cnblogs.com/hackerain/p/3682019.html)
 2. [unittest介绍](<https://blog.csdn.net/huilan_same/article/details/52944782>)
+3. [Django单元测试类——TestCase与TransactionTestCase](<https://blog.csdn.net/BDuck2014/article/details/86521755>)
 
 ## 主要概念  
 
@@ -55,4 +56,41 @@ Created by ALTA
    
    可见，对一个测试用例环境的搭建和销毁，是一个fixture，通过覆盖TestCase的setUp()和tearDown()方法来实现。
 
+### 测试用例的区分  
+
+```python
+import random
+import unittest
+ 
+class TestSequenceFunctions(unittest.TestCase):
+ 
+    def setUp(self):
+        self.seq = range(10)
+ 
+    def test_shuffle(self):
+        # make sure the shuffled sequence does not lose any elements
+        random.shuffle(self.seq)
+        self.seq.sort()
+        self.assertEqual(self.seq, range(10))
+ 
+        # should raise an exception for an immutable sequence
+        self.assertRaises(TypeError, random.shuffle, (1,2,3))
+ 
+    def test_choice(self):
+        element = random.choice(self.seq)
+        self.assertTrue(element in self.seq)
+ 
+    def test_sample(self):
+        with self.assertRaises(ValueError):
+            random.sample(self.seq, 20)
+        for element in random.sample(self.seq, 5):
+            self.assertTrue(element in self.seq)
+ 
+if __name__ == '__main__':
+    unittest.main()
+```
+
+上述一个测试类中包含3个测试方法，根据TestLoader是如何加载测试用例的(后面深入源码分析时补充)可是每个测试方法均为一个测试用例。**每个**测试用例**均会**执行一次setUp和tearDown方法，<u>如果希望所有的用例共用setUp和tearDown方法(即开始前执行1次setUp, 所有用例结束后执行1次tearDown)，使用类方法`setUpClass`、`tearDownClass`</u>  
+
+PS: *unittest中并无_post_tearDown方法，该方法为django test继承unittest后扩展*
 
