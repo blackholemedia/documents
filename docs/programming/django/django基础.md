@@ -3,16 +3,16 @@ Table of Contents
 =================
 
    * [Django基础](#django基础)
-      * [阅读说明](#阅读说明)
       * [参考引用](#参考引用)
       * [基本概念](#基本概念)
          * [Web应用框架](#web应用框架)
          * [MVC与MTV](#mvc与mtv)
          * [DJANGO的MTV组织](#django的mtv组织)
+      * [基本知识](#基本知识)
+         * [模型关系的建立](#模型关系的建立)
 
 Created by ALTA
 # Django基础  
-
 <font color=#008000>绿色字体</font>代表个人的思考理解，<font color=Yellow>黄色字体</font>代表阅读理解过程中的疑问，<font color=Red>红色字体</font>代表关键重要信息，<u>下划线</u>代表次关键重要信息，`阴影`或 *一般斜体* 均表示引用或强调 
 
 ```python
@@ -46,4 +46,23 @@ MTV：view不再是HTML相关，而是主业务逻辑了，相当于控制器。
 <div align="center"> <img src="https://blackholemedia.github.io/documents/statics/django_mtv.jpg" width="400px"> </div><br>
 
 
+
+## 基本知识  
+
+### 模型关系的建立  
+
+多对多关系中的中间表 cms_blog_tags. 只需要在任意一方(两张表的任一张)ManyToManyField就可以了。Django会自动为多对多关联关系创建一张表(在python manage migrate)用于两张表的联系，或者可以自己手动创建关联表。参考[django一对多、多对多模型、自关联的建立](https://www.cnblogs.com/chichung/p/9905835.html)，手动建表如下：
+
+```python
+class Student(models.Model):
+    name= models.CharField(max_length=16)
+    birthday=models.DateField()
+
+class Club(models.Model):
+    name= models.CharField(max_length=16)
+
+class Membership(models.Model):
+    student = models.ForeignKey("Student")
+    club = models.ForeignKey("Club")
+```
 

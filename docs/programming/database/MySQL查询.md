@@ -157,17 +157,16 @@ left blank
      ->
      select ...from ... where a > result1 or a > result2 or a > result3;
      ```
-  ```
-   
+     
    - all:
    
      ```mysql
      select ...from ... where a > all(...);
      ->
      select ...from ... where a > result1 and a > result2 and a > result3;
-  ```
-
-   - Some:
+     ```
+   
+   - some:
    
      ```mysql
      # some关键字和any关键字是一样的功能。所以:
