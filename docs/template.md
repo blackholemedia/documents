@@ -30,6 +30,11 @@ Created by ALTA
 
 Content 
 
+数学公式
+$$
+f'(t)=\lim_{\Delta t \to 0}\frac{f(t + \Delta t)-f(t)}{\Delta t}
+$$
+
 1. Number-prefix class  
 
    Content 
