@@ -101,7 +101,7 @@ HTTP 的请求标头一般分为四种： `通用标头`、`请求标头`、`响
 
    需要注意的是Cache-Control 的种类比较多，虽然说这是一个通用标头，但是又一些特性是请求标头具有的，有一些是响应标头才有的。其他通用表头参考如下：
 
-   <div align="center"> <img src="https://blackholemedia.github.io/documents/statics/general_header.jpg" width="400px"> </div><br>
+   <div align="center"> <img src="https://blackholemedia.github.io/documents/statics/general-header.jpg" width="400px"> </div><br>
 
 2. 请求标头
 
