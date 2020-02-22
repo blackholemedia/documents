@@ -52,11 +52,11 @@ Created by ALTA
 
 ### 建立TCP连接后发起http请求  
 
-进过TCP3次握手之后，浏览器发起了http的请求，请求参考[HTTP报文](./HTTP报文.md)  
+进过TCP3次握手之后，浏览器发起了http的请求，请求参考[HTTP报文](https://blackholemedia.github.io/documents/#/programming/network/HTTP%E6%8A%A5%E6%96%87)  
 
 ### 服务器端响应http请求，浏览器得到html代码  
 
-服务器端WEB程序接收到http请求以后，就开始处理该请求，处理之后就返回给浏览器html文件，响应报文参考：[HTTP报文](./HTPP报文.md)  
+服务器端WEB程序接收到http请求以后，就开始处理该请求，处理之后就返回给浏览器html文件，响应报文参考：[HTTP报文](https://blackholemedia.github.io/documents/#/programming/network/HTTP%E6%8A%A5%E6%96%87)  
 
 **那到底服务器端接收到http请求后是怎么样生成html文件？**  
 
