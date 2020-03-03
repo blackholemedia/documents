@@ -20,7 +20,6 @@ Table of Contents
 
 Created by ALTA
 # 现代编码模型  
-
 ```python
 # ---------------------------------- 输出结果
 ```
@@ -114,7 +113,7 @@ UCS就是统一字符集，就是由 ISO/IEC 10646所定义的编码字符集。
 
 <div align="center"> <img src="https://blackholemedia.github.io/documents/statics/ucs_1.jpg" width="400px"> </div><br>
 
-大家喜闻乐见的Emoji表情则位于更高的码位，例如“哭笑”，在UCS中的码位就是0x1F602。  
+大家喜闻乐见的Emoji表情则位于更高的码位，例如:joy:，在UCS中的码位就是0x1F602。  
 
 关于CCS，这些介绍大抵足够了。不过还有一个细节需要注意。按照目前最新Unicode 9.0.0的标准，UCS理论上收录了128,237个字符,也就是0x1F4ED个。不过如果进行一些尝试会发现，实际能用的最大的码位点在0x1F6D0 ，也就是128,720，竟然超过了收录的字符数，这又是为什么呢？  
 
@@ -177,9 +176,9 @@ UTF-8的码元为uint8, UTF-16的码元为uint16, UTF-32的码元为uint32。当
 
 例子：  
 
-<div align="center"> <img src="https://blackholemedia.github.io/documents/statics/cef_1.jpg" width="400px"> </div><br>
+<div align="center"> <img src="https://blackholemedia.github.io/documents/statics/cef_1.jpg" width="500px"> </div><br>
 
-<div align="center"> <img src="https://blackholemedia.github.io/documents/statics/cef_2.jpg" width="400px"> </div><br>
+<div align="center"> <img src="https://blackholemedia.github.io/documents/statics/cef_2.jpg" width="500px"> </div><br>
 
 ## 字符编码方案CES  
 
@@ -205,7 +204,7 @@ UTF-8的码元为uint8, UTF-16的码元为uint16, UTF-32的码元为uint32。当
 - UTF-32BE
 - UTF-32
 
-其中UTF-8因为已经采用字节作为码元了，所以实际上不存在字节序的问题。其他两种CES嘛，都有一个大端版本一个小端版本，还有一个随机应变大小端带BOM的版本. 下面给一个Python编码的小例子，将Emoji：哭笑 转换为各种CES.  
+其中UTF-8因为已经采用字节作为码元了，所以实际上不存在字节序的问题。其他两种CES嘛，都有一个大端版本一个小端版本，还有一个随机应变大小端带BOM的版本. 下面给一个Python编码的小例子，将Emoji：:joy: 转换为各种CES.  
 
 ```python
 for encoding in ['UTF-8', 'UTF-16LE', 'UTF-16BE', 'UTF-16', 'UTF-32LE', 'UTF-32BE', 'UTF-32']:
@@ -255,7 +254,7 @@ UTF-8问题还好，因为UTF-8的字节序列化方案太朴素了，以至于C
 
 ### Python2中的编码问题  
 
-回到正题，出现各种编码问题，无非是哪里的编码设置出错了，常见编码错误的原因有：
+(该小节内容均基于python2)回到正题，出现各种编码问题，无非是哪里的编码设置出错了，常见编码错误的原因有：
 
 - Python解释器的默认编码
 - Python源文件文件编码
@@ -280,3 +279,191 @@ UTF-8问题还好，因为UTF-8的字节序列化方案太朴素了，以至于C
   
   字节串就字节串，为啥要起个类型名叫str呢？另外，字面值语法用一对什么前缀都没有的引号表示str，这样的设计非常反直觉。当然，`<str>`与`<unicode>`这样的类型设计以及两者的关系设计本身是无可厚非的。该黑的应该是这两个类型起的**名字**和**字面值表示方法**。至于怎么改进是好的，Python3已经给出答案  
 
+1. python2的字节串  
+
+   python2使用`‘xxx'`作为字节串字面值，其类型为`<str>`，但`<str>`本质上是字节串  
+
+   我的终端是UTF-8编码，所以在终端键入字面值:joy:，实际输入的是字面值的字节序列(字节串/字节流)`\xf0 \x9f \x98 \x82`， python2解释器接受到这个字节序列并原样存储到变量s中：  
+
+   ```python
+   s = '😂'
+   ```
+
+   当我们打印`repr(s)`的时候，会打印变量s的内部表示，即字节串`\xf0 \x9f \x98 \x82`，它的类型为`<str>`，即字节流。当我们使用print打印一个字节串`<str>`本身时，python2会原封不动地将这个字节串输出到stdout。因为终端编码为UTF-8，所以这个UTF-8编码的字节串s会被终端使用UTF-8解码，打印出原样的抽象字符:joy:  
+
+   ```python
+   print repr(s), type(s), s
+   # ---------------------------------- 输出结果
+   '\xf0 \x9f \x98 \x82', <type 'str'>, 😂
+   ```
+
+2.  python2的字符串  
+
+   python2使用u'xxxx'作为字符串的字面值，其类型为`<unicode>`， `<unicode>`为真正意义上的字符串，每一个字符都属于UCS。  
+
+   输入字面值的字节序列`\xf0 \x9f \x98 \x82`，但因为表明了这是一个字符串字面值，python2会将其自动解码为Unicode，存储如变量us中。
+
+   ```python
+   us = u'😂'
+   ```
+
+   当打印`repr(us)`时，会打印变量us的内部表示，即字符串u'\U0001f602'，它的类型是`<unicode>`，包括了一个`<unicode>`字符。当使用print打印一个`<unicode>`字符串本身时，python2会使用系统调用，将这个字符串直接写回控制台窗口，原样打出:joy:。  
+
+   ```python
+   print repr(us), type(us), us
+   # ---------------------------------- 输出结果
+   u'\U0001f602', <type 'unicode'>, 😂
+   ```
+
+3. 字符串和字节串的关系  
+
+   s是一个字节串(<u>字节流</u>)，其内容为utf-8编码的字符:joy:，即： `\xf0 \x9f \x98 \x82`  
+
+   `u`s是一个字符串，其内容为字符:joy:本身，所以 s !=  `u`s  
+
+   但如果我们对s这个字节串进行`utf-8`解码，接可以得到字符串`u`s，同理，对`u`s这个字符串进行`utf-8`编码就可以得到字节串s。  
+
+   ```python
+   s.decode('utf-8') == us, us.encode('utf-8') == s, s == us
+   # ---------------------------------- 输出结果
+   True, True, False
+   ```
+
+4. 字符串和字节串的转换  
+
+   - 字符串 to 字节串(字节流/字节序列)  
+
+     当使用str(us)进行强制类型转换的时候，实际执行的是：  
+
+     ```python
+     us.encode(sys.getdefaultencoding())
+     # python2默认编码方案
+     us.encode('ascii')
+     ```
+
+     当字符串中只有ASCII字符的时候这样转换没有问题，但如果包含非ASCII字符的时候就会报错，因为非ASCII字符无法使用ASCII进行编码  
+
+   - 字节串(字节流/字节序列) to 字符串  
+
+     有一个字节流`\xf0 \x9f \x98 \x82`，也就是:joy:的utf-8编码，如何转成一个真正的字符。  
+
+     同理多数人的想法是进行强制类型转换：unicode(s)，实行执行的是：  
+
+     ```python
+     s.decode(sys.getdefaultencoding())
+     # python2默认编码方案ascii
+     s.decode('ascii')
+     ```
+
+     当字节流只有0～127的字节的时候，也就是原来的字符串只有ASCII的字符串，这样是可以的，如果不是ASCII解码器会认为这是个非法ASCII字节串而报错  
+
+     所以对字节串和字符串相互转换的时候最科学的方式是使用encode和decode  
+
+   - **对字节串的解码(decode)**  
+
+     **解码(decode)**是定义在字节串`<str>`上进行的。使用正确的**编码方案CES**最字节串解码可以获得对应的字符串，如果使用错误的CES进行解码，就会出现乱码或报错  
+
+     ```python
+     print repr(s), s.decode('gbk')
+     # ---------------------------------- 输出结果
+     `\xf0 \x9f \x98 \x82`, 馃槀
+     ```
+
+     使用GBK对字节串进行解码，因为GBK为双字节编码，所以s正好4个字节，解码成功，解析出无意义的乱码。  
+
+     ```python
+     print repr('蛤'), '蛤'.decode('gbk')
+     # ---------------------------------- 输出结果
+     `\xe8 \x9b \xa4`
+     UnicodeEncodeError: 'gbk' codec can't encode character '\xae' in position 2699: illegal multibyte sequence
+     ```
+
+     '蛤'在utf-8下编码成3个字节 `\xe8 \x9b \xa4`，在GBK编码看来，每个GBK字符都会编码成两个字节，出现单个字节需要解码就会报错  
+
+   - 对字符串`<unicode>`的'解码'  
+
+     解码(decode)只能对字节串`<str>`进行，对字符串`<unicode>`进行解码毫无意义，但是这样做也可以  
+
+     ```python
+     >>> u'abc'.decode('utf-8')  # 在纯ascii环境下没问题  
+     u'abc'
+     >>> us.decode('utf-8')		# 出现非ascii字符报错
+     UnicodeEncodeError: 'ascii' codec can't encode characters in position 0-1: 
+     ```
+
+     对字符串`<unicode>`进行解码前，python2会任务这是一个'愚蠢'的动作，因此会将字符串使用默认编码方案转成字节流`<str>`，然后在进行解码，实际相当于： 
+
+     ```python
+     <unicode>.decode(<encoding>) = 	<unicode>.encode(<PythonDefaultEncoding>).decode(<encoding>)
+     ```
+
+      
+
+   - **对字符串的编码(Encode)**  
+
+     编码是发生在`<unicode>`上的操作，对字符串:joy:使用不同的CES进行编码，会得到一系列不同字节流  
+
+     ```python
+     for encoding in ['UTF-8', 'UTF-16LE', 'UTF-16BE', 'UTF-16', 'UTF-32LE', 'UTF-32BE', 'UTF-32']:
+         print('%-10s\t%s' % (encoding, repr(us.encode(encoding))))
+         
+     # ---------------------------------- 输出结果
+     UTF-8           '\xf0\x9f\x98\x82'
+     UTF-16LE        '=\xd8\x02\xde'
+     UTF-16BE        '\xd8=\xde\x02'
+     UTF-16          '\xff\xfe=\xd8\x02\xde'
+     UTF-32LE        '\x02\xf6\x01\x00'
+     UTF-32BE        '\x00\x01\xf6\x02'
+     UTF-32          '\xff\xfe\x00\x00\x02\xf6\x01\x00'
+     ```
+
+     还可以使用其他CES进行编码，因为字符:joy:不属于GBK字符集，所以使用GBK编码会报错，但是换句话说，如果一个UCS字符集中的字符也属于GBK字符集，比如'蛤'，那么是可以使用GBK进行编码的
+
+     ```python
+     uha = u'蛤'
+     print uha, type(uha), repr(uha.encode('gbk'))
+     print uha.encode('gbk')	  # 虽然可以编码成功，但如果终端是UTF-8的就会认不出GBK编码的字节流
+     # ---------------------------------- 输出结果
+     蛤， <type 'unicode'>, '\xb8 \xf2'
+     ��
+     ```
+
+   - 对字节串的编码  
+
+     ```python
+     'abd'.encode('utf-8'), 'abc'.encode('utf-16be'), 'abc'.encode('gbk')
+     # ---------------------------------- 输出结果
+     'abc', '\x00a\x00b\x00c', 'abc'
+     ```
+
+     之所以可以这样是因为当python2对`<str>`进行编码的时候，会首先对字节流进行解码，使用默认编码方案进行解码，也就是US-ASCII，所以如果字节流中只有ASCII字符，那么是可以对`<str>`直接’编码'，但如果字节流中包含非ASCII字符，那么就会出错，也就是说对字节串编码实际上是：
+
+     ```
+     <str>.encode(<encoding>) = 	<str>.decode(<PythonDefaultEncoding>).encode(<encoding>)
+     ```
+
+5. python的内部默认编码  
+
+   python内部默认编码方案CES为UTF-8，<font color=Red>强烈不建议</font>编程时修改解释器默认编码，这会导致不可知的异常结果。  
+
+   ```python
+   import sys
+   reload(sys)
+   sys.setdefaultencoding('utf-8')  # Dirty Hack
+   '续命'.encode('utf-8')			# 本应报错
+   '\xe7\xbb\xad\xe5\x91\bd'
+   u'续命'.decode('utf-8')			# 无法直视
+   u'\u7eed\u547d'
+   ```
+
+6. python的源文件默认编码  
+
+   python源文件默认编码也是ASCII，为支持其他字符，在文件头部加上如下：
+
+   ```python
+   # -*- coding: utf-8 -*-
+   # 也可以使用别的编码，比如中文环境
+   # -*- coding: gbk -*-
+   ```
+
+   
