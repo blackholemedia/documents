@@ -1,5 +1,0 @@
-* [Django](/programming/django/)
-	* [Django 基础](/programming/django/django基础.md "Django 基础")
-	* [Django ORM分析](/programming/django/Django_ORM分析.md "Django ORM分析")
-	* [Django URL](/programming/django/Django_URL.md "Django URL")
-	* [中间件](/programming/django/中间件.md "中间件")
