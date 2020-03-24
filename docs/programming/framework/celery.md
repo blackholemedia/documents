@@ -51,7 +51,7 @@ $$
 
 Celery 是一个简单、灵活且可靠的，处理大量消息的**分布式系统**(<font color=Yellow>什么是分布式系统？master-slave?</font>)，并且提供维护这样一个系统的必需工具。
 
-它是一个专注于实时处理的**任务队列**，同时也支持任务调度
+它是一个专注于实时处理的**任务队列**，同时也支持任务调度(<font color=green>分布式系统＋任务队列</font>)
 
 ## 架构  
 
@@ -70,6 +70,10 @@ Worker是Celery提供的任务执行的单元，worker并发的运行在分布�
 ### backend  
 
 通常程序发送的消息，发完就完了，可能都不知道对方时候接受了。为此，celery实现了一个backend，用于存储这些消息以及celery执行的一些消息和结果。Backend是在Celery的配置中的一个配置项 CELERY_RESULT_BACKEND ，作用是保存结果和状态，如果你需要跟踪任务的状态，那么需要设置这一项，可以是Database backend，也可以是Cache backend，具体可以参考这里： [CELERY_RESULT_BACKEND](http://docs.celeryproject.org/en/latest/configuration.html#celery-result-backend) 。
+
+## 使用  
+
+
 
 ### second-class title  
 
