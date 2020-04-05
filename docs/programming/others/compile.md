@@ -11,7 +11,7 @@ Table of Contents
          * [汇编阶段](#汇编阶段)
          * [链接阶段](#链接阶段)
       * [编译汇编的实现历史](#编译汇编的实现历史)
-         * [实现高级语言，不一定必须依靠更低级的语言](#实现高级语言不一定必须依靠更低级的语言)
+         * [实现高级语言不一定必须依靠更低级的语言](#实现高级语言不一定必须依靠更低级的语言)
          * [如何实现第一个高级语言的第一个编译器](#如何实现第一个高级语言的第一个编译器)
          * [汇编过程](#汇编过程)
       * [附录](#附录)
@@ -96,7 +96,7 @@ gcc hello.o -o hello
 
 ## 编译汇编的实现历史  
 
-### 实现高级语言，不一定必须依靠更低级的语言  
+### 实现高级语言不一定必须依靠更低级的语言  
 
 由上文可知，编译主要将高级语言转换为汇编语言，汇编主要将汇编语言转换为二进制机器码。因此对于编译而言，**任何[图灵完备](#附录)的编程语言，理论上都是能用来写编译器的**，因此，可以采用某种高级语言实现另外一种高级语言的编译器
 
@@ -156,7 +156,7 @@ gcc hello.o -o hello
 
          >  A computational problem is a mathematical object representing a collection of questions that computers might be able to solve.
 
-         计算问题有的可以解决，有的不可解决。这就引出了计算问题的可计算性（Computability）。它可以被理解为“是否存在一个算法，能解决在任何输入下的此计算问题”。不可计算的计算问题，比如著名的停机问题（Halting Problem）。它的表述是这样的：给定一段程序的描述和该程序的一个有效输入，运行此程序，那么程序最终是会终止，还是会死循环下去？
+      计算问题有的可以解决，有的不可解决。这就引出了计算问题的可计算性（Computability）。它可以被理解为“是否存在一个算法，能解决在任何输入下的此计算问题”。不可计算的计算问题，比如著名的停机问题（Halting Problem）。它的表述是这样的：给定一段程序的描述和该程序的一个有效输入，运行此程序，那么程序最终是会终止，还是会死循环下去？
 
          > given the description of an arbitrary program and a finite input, decide whether the program finishes running or will run forever.
 
