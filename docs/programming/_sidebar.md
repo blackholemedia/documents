@@ -2,7 +2,7 @@
 	* [Python](/programming/python/)
 	* [Linux](/programming/linux/)
 	* [Database](/programming/database/)
-	* [Django](/programming/django/)
+	* [Framework](/programming/framework/)
 	* [Front End](/programming/front_end/)
 	* [Architecture](/programming/architecture/)
 	* [Network](/programming/network/)

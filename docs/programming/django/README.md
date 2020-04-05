@@ -1,4 +1,0 @@
-# Django
-
->  Notes about django.
-
