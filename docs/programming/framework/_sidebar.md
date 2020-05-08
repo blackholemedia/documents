@@ -5,4 +5,5 @@
 	  * [中间件](/programming/framework/django/中间件.md "中间件")
 	  * [Django基础](/programming/framework/django/django基础.md "Django 基础")
 	* [Celery](/programming/framework/celery.md "Celery")
+	* [Zookeeper](/programming/framework/zookeeper.md "Zookeeper")
 
