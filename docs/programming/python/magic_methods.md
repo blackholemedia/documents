@@ -36,7 +36,28 @@ Content
 
      Content 
 
-## First-class title  
+## 魔术方法  
+
+### `__slot__`  
+
+用于限制实例的属性，比如，只允许对Student实例添加`name`和`age`属性。`__slots__`定义的属性仅对当前类实例起作用，对继承的子类是不起作用的  
+
+```python
+class Student(object):
+    __slots__ = ('name', 'age') # 用tuple定义允许绑定的属性名称
+```
+
+### `__iter__`  
+
+用于返回一个迭代对象(<font color=Red>该对象需包含`__next__`方法</font>)，然后，Python的for循环就会不断调用该迭代对象的`__next__()`方法拿到循环的下一个值，直到遇到`StopIteration`错误时退出循环
+
+### `__next__`  
+
+用于  
+
+### `__call__`  
+
+
 
 ### second-class title  
 
