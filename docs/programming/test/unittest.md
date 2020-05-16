@@ -90,7 +90,7 @@ if __name__ == '__main__':
     unittest.main()
 ```
 
-上述一个测试类中包含3个测试方法，根据TestLoader是如何加载测试用例的(后面深入源码分析时补充)可是每个测试方法均为一个测试用例。**每个**测试用例**均会**执行一次setUp和tearDown方法，<u>如果希望所有的用例共用setUp和tearDown方法(即开始前执行1次setUp, 所有用例结束后执行1次tearDown)，使用类方法`setUpClass`、`tearDownClass`</u>  
+上述一个测试类中包含3个测试方法，根据TestLoader是如何加载测试用例的(后面深入源码分析时补充)可见每个测试方法均为一个测试用例。**每个**测试用例**均会**执行一次setUp和tearDown方法，<u>如果希望所有的用例共用setUp和tearDown方法(即开始前执行1次setUp, 所有用例结束后执行1次tearDown)，使用类方法`setUpClass`、`tearDownClass`</u>  
 
 PS: *unittest中并无_post_tearDown方法，该方法为django test继承unittest后扩展*
 
