@@ -7,5 +7,6 @@
 	* [Celery](/programming/framework/celery.md "Celery")
 	* [Zookeeper](/programming/framework/zookeeper.md "Zookeeper")
 	* [Flink](/programming/framework/flink.md "Flink")
+	* [RabbitMQ](/programming/framework/rabbitmq.md "RabbitMQ")
 
 
