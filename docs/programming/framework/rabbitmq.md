@@ -3,7 +3,6 @@ Table of Contents
 =================
 
    * [RabbitMQ](#rabbitmq)
-      * [阅读说明](#阅读说明)
       * [参考引用](#参考引用)
       * [问题背景](#问题背景)
       * [基本概念、架构与处理流程](#基本概念架构与处理流程)
@@ -15,10 +14,18 @@ Table of Contents
       * [安装部署](#安装部署)
       * [原理细节及详细过程](#原理细节及详细过程)
          * [详细过程](#详细过程)
+      * [深入的其他议题](#深入的其他议题)
+         * [死信队列(DLX)](#死信队列dlx)
+         * [消费端ACK与NACK](#消费端ack与nack)
+         * [Return消息机制](#return消息机制)
+         * [消费端自定义监听(推模式和拉模式pull/push)](#消费端自定义监听推模式和拉模式pullpush)
+         * [如何保证幂等性](#如何保证幂等性)
+         * [如何保证可靠性](#如何保证可靠性)
+         * [消息如何限流](#消息如何限流)
+         * [集群设置](#集群设置)
 
 Created by ALTA
 # RabbitMQ  
-
 <font color=limegreen>绿色字体</font>代表个人的思考理解，<font color=Yellow>黄色字体</font>代表阅读理解过程中的疑问，<font color=Red>红色字体</font>代表关键重要信息，<u>下划线</u>代表次关键重要信息，`阴影`或 *一般斜体* 均表示引用或强调 
 
 ```python
@@ -149,3 +156,36 @@ RabbitMQ主要包含四种交换器类型(direct、topic、fanout、headers)， 
    - 客户端投递消息到exchange  
    - 客户端消费消息
 
+## 深入的其他议题  
+
+### 死信队列(DLX)  
+
+left blank  
+
+### 消费端ACK与NACK
+
+left blank  
+
+### Return消息机制  
+
+left blank  
+
+### 消费端自定义监听(推模式和拉模式pull/push)
+
+left blank  
+
+### 如何保证幂等性  
+
+left blank  
+
+### 如何保证可靠性  
+
+left blank  
+
+### 消息如何限流  
+
+left blank  
+
+### 集群设置  
+
+left blank
