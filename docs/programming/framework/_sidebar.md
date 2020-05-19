@@ -8,5 +8,6 @@
 	* [Zookeeper](/programming/framework/zookeeper.md "Zookeeper")
 	* [Flink](/programming/framework/flink.md "Flink")
 	* [RabbitMQ](/programming/framework/rabbitmq.md "RabbitMQ")
+	* [Kafka](/programming/framework/kafka.md "Kafka")
 
 
