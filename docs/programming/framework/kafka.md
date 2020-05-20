@@ -2,7 +2,6 @@
 Table of Contents
 =================
 
-   * [Table of Contents](#table-of-contents)
    * [Kafka](#kafka)
       * [参考引用](#参考引用)
       * [定义](#定义)
@@ -12,10 +11,11 @@ Table of Contents
          * [架构](#架构)
          * [处理过程](#处理过程)
       * [安装部署](#安装部署)
+      * [原理及详细过程](#原理及详细过程)
+      * [其他细节及问题](#其他细节及问题)
 
 Created by ALTA
 
-# Kafka  
 
 <font color=#008000>绿色字体</font>代表个人的思考理解，<font color=Yellow>黄色字体</font>代表阅读理解过程中的疑问，<font color=Red>红色字体</font>代表关键重要信息，<u>下划线</u>代表次关键重要信息，`阴影`或 *一般斜体* 均表示引用或强调 
 
@@ -82,4 +82,12 @@ Left blank
 
 ## 安装部署  
 
-参考搜索引擎
+参考搜索引擎  
+
+## 原理及详细过程  
+
+left blank 
+
+## 其他细节及问题  
+
+Left blank
