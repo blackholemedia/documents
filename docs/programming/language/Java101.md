@@ -22,7 +22,7 @@ Created by ALTA
 
 本文引用及参考自下列文章/网站， 版权归属原作者所有：
 
-1. 111111
+1. [泛型](<https://segmentfault.com/a/1190000014120746>)
 
 ### 
 
@@ -43,9 +43,51 @@ $$
 
      Content 
 
-## 问题背景  
+## 基本概念  
 
-11
+### 修饰符  
+
+left blank
+
+### 泛型  
+
+泛型是**提供给javac编译器使用的**，它用于限定集合的输入类型，让编译器在源代码级别上，即挡住向集合中插入非法数据。**把类型明确的工作推迟到创建对象或调用方法的时候才去明确的特殊的类型**，因此泛型适用于对象(变量、类)/方法  
+
+1. 泛型类  
+
+   ```java
+   public static void main(String[] args) {
+       //创建对象并指定元素类型
+       ObjectTool<Integer> objectTool = new ObjectTool<>();
+       /**
+        * 如果我在这个对象里传入的是String类型的,它在编译时期就通过不了.
+        */
+       objectTool.setObj(10);
+       int i = objectTool.getObj();
+       System.out.println(i);
+   }
+   ```
+
+2. 泛型方法  
+
+   ```java
+   //定义泛型方法..
+   public <T> void show(T t) {
+       System.out.println(t);
+   }
+   
+   public static void main(String[] args) {
+       //创建对象
+       ObjectTool tool = new ObjectTool();
+   
+       //调用方法,传入的参数是什么类型,返回值就是什么类型
+       tool.show("hello");
+       tool.show(12);
+       tool.show(12.5);
+   }
+   ```
+
+   
 
 ## 基本语法  
 
@@ -65,9 +107,48 @@ $$
 方法体
 }
 
+```java
+public int show(int a,int b){
+int sum;
+sum=a+b;
+return sum;
+}
+```
+
 ### 类  
 
-修饰符 class 类名{}
+修饰符 class 类名{}  
+
+```java
+//创建一个名为computer的类
+public class computer {
+    //类的属性（也叫成员变量）
+    String brand;
+    int price;
+    String type;
+
+    //类的方法
+    public void playGame(){
+        System.out.println("使用电脑打游戏");
+    }
+    public void netPlay(){  
+        System.out.println("使用电脑上网!"+"brand:"+brand+" price:"+price+" type:"+type);
+    }
+
+}
+
+//实例化类
+public class InitailComputer {
+    public static void main(String[] args){
+        //使用computer类进行创建computer对象，new computer() 就是实例化
+         computer computer=new computer();、
+         //调用方法
+         computer.netPlay();
+    }
+}
+```
+
+
 
 ### second-class title  
 
