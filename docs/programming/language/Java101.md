@@ -2,15 +2,21 @@
 Table of Contents
 =================
 
-   * [template](#template)
-      * [first-class title](#first-class-title)
-         * [second-class title](#second-class-title)
-      * [first-class title](#first-class-title-1)
-         * [second-class title](#second-class-title-1)
+   * [Table of Contents](#table-of-contents)
+   * [Java101](#java101)
+      * [参考引用](#参考引用)
+      * [基本概念](#基本概念)
+         * [修饰符](#修饰符)
+         * [泛型](#泛型)
+      * [基本语法](#基本语法)
+         * [变量](#变量)
+         * [数组](#数组)
+         * [方法](#方法)
+         * [类](#类)
 
 Created by ALTA
-# Template  
-## 阅读说明  
+
+# Java101  
 
 <font color=#008000>绿色字体</font>代表个人的思考理解，<font color=Yellow>黄色字体</font>代表阅读理解过程中的疑问，<font color=Red>红色字体</font>代表关键重要信息，<u>下划线</u>代表次关键重要信息，`阴影`或 *一般斜体* 均表示引用或强调 
 
@@ -23,6 +29,7 @@ Created by ALTA
 本文引用及参考自下列文章/网站， 版权归属原作者所有：
 
 1. [泛型](<https://segmentfault.com/a/1190000014120746>)
+2. [java new对象时直接在后面加两个大括号是什么用法](<https://www.oschina.net/question/2830476_2274044>)
 
 ### 
 
@@ -91,6 +98,73 @@ left blank
 
 ## 基本语法  
 
+### 变量  
+
+`数据类型 变量名 = 值`，前述语句完成了声明及赋值，其实质相当于 `数据类型 变量名 = new 数据类型 (){}`，后者是前者的细化
+
+<font color=limegreen>值可以是一个量值，也可以是一个实例(对象)，所以我们发现A.创建对象的语法规则;B.定义数组变量;C.泛型定义也遵循上面的等式，一切都是对象。究其原因就是所有的量值、实例、对象都是通过类进行定义的，无论是基本数据类型，还是引用数据类型都是如此，数据类型=类</font>  
+
+```java
+Puppy myPuppy = new Puppy( "tommy" );
+// 数据类型: Puppy类，类也是数据类型的一种
+// 变量名： myPuppy
+// new：构建值(实例)
+// 数据类型：构建值(实例)，Puppy类
+// (): 构建值(实例)，调用构造方法，传入参数tommy
+// {}: 构建值(实例)，临时定义类的属性或方法
+int[] a = new int[]{1,2,3,4}
+// 数据类型: int[]，数组，我们可以看到数组数据类型的定义与泛型定义几乎一致，采用基础数据类型+封闭符号对数据类型进行约束，此处的基础数据类型是int, 封闭符号是[]，约束是：1.这是个集合 2.集合的元素必须为int
+// 变量名： a
+// new：构建值(实例)
+// 数据类型：构建值(实例)，int[]，数组
+// (): 构建值(实例)，此处表明被调用的构造方法无需参数，即被调用的构造方法是缺省的/默认的
+// {}: 构建值(实例)，临时定义类的属性或方法，此处定义了类包含有1，2，3，4等常量
+ObjectTool<Integer> objectTool = new ObjectTool<>();
+// 数据类型: ObjectTool<>，带泛型的ObjectTool类，因为类也是数据类型的一种，采用基础数据类型+封闭符号对数据类型进行约束，此处的基础数据类型是ObjectTool, 封闭符号是<>，约束是：1.这是个集合类，且集合类中的元素类型待明确 2.这个集合类必须为ObjectTool
+// 变量名： objectTool
+// new：构建值(实例)
+// 数据类型：构建值(实例)，ObjectTool<>，带泛型的ObjectTool类
+// (): 构建值(实例)，此处表明被调用的构造方法无需参数，即被调用的构造方法是缺省的/默认的
+// {}: 构建值(实例)，临时定义类的属性或方法，此处没有定义
+List<String> list = new ArrayList<String>() {
+            {
+                add("a");
+                add("b");
+            }
+        };
+// 数据类型: List<String>，带泛型的List类，因为类也是数据类型的一种，采用基础数据类型+封闭符号对数据类型进行约束，此处的基础数据类型是List, 封闭符号是<>，约束是：1.这是个集合类，且集合类中的元素类型已明确为String 2.这个集合类必须为List
+// 变量名： list
+// new：构建值(实例)
+// 数据类型：构建值(实例)，ArrayList<String>，带泛型的ArrayList类
+// (): 构建值(实例)，此处表明被调用的构造方法无需参数，即被调用的构造方法是缺省的/默认的
+// {}: 构建值(实例)，临时定义类的属性或方法，此处动态增加了两个方法
+
+// 由后面两个例子可知，等号前后的数据类型可以不一致，但必然呈现继承/包含/强化等关系，这些关系可使之视作相同的数据类型，如ObjectTool<Integer>是ObjectTool<>的强化，ArrayList<String>是List<String>的继承
+```
+
+
+
+1. 数据类型  
+
+   基本数据类型：
+
+   - 整数类型（byte，short，int，long）
+   - 浮点类型（float，double）
+   - 字符型（char）
+   - 布尔型（boolean)
+
+   引用数据类型：
+
+   - 类（class）
+   - 接口（interface）
+   - 数组(特别提醒String为引用类型)
+
+   基本类型存储的是数据的本身，引用类型存储的是保存数据的空间地址
+
+2. 11111
+
+
+
 ### 数组  
 
 1. 声明: 数组类型[] 数组名称，或者： 数组类型 数组名称[] ，例：int [] a; 
@@ -103,9 +177,9 @@ left blank
 
 ### 方法  
 
-修饰符 返回值类型 方法名（参数）{
+`修饰符 返回值类型 方法名（参数）{
 方法体
-}
+}`
 
 ```java
 public int show(int a,int b){
@@ -117,7 +191,7 @@ return sum;
 
 ### 类  
 
-修饰符 class 类名{}  
+`修饰符 class 类名{}`  
 
 ```java
 //创建一个名为computer的类
@@ -147,11 +221,3 @@ public class InitailComputer {
     }
 }
 ```
-
-
-
-### second-class title  
-
-1. Number-prefix class  
-   - Symbol-prefix class
-   - 

@@ -10,5 +10,6 @@
 	* [Test](/programming/test/)
 	* [Algorithm](/programming/algorithm/)
 	* [Node Js](/programming/nodejs/)
+	* [Language](/programming/language/)
 	* [Others](/programming/others/)
 
