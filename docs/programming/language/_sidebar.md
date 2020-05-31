@@ -1,2 +1,2 @@
 * [Language](/programming/language/)
-	* [Java101](/programming/language/java101.md "Java101")
+	* [Java101](/programming/language/Java101.md "Java101")
