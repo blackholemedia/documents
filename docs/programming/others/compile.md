@@ -14,12 +14,13 @@ Table of Contents
          * [实现高级语言不一定必须依靠更低级的语言](#实现高级语言不一定必须依靠更低级的语言)
          * [如何实现第一个高级语言的第一个编译器](#如何实现第一个高级语言的第一个编译器)
          * [汇编过程](#汇编过程)
+      * [编译型语言与解析型语言](#编译型语言与解析型语言)
+         * [CPython是使用C语言开发的Python解释器](#cpython是使用c语言开发的python解释器)
       * [附录](#附录)
          * [图灵机与图灵完备](#图灵机与图灵完备)
 
 Created by ALTA
 # 编译  
-<font color=#008000>绿色字体</font>代表个人的思考理解，<font color=Yellow>黄色字体</font>代表阅读理解过程中的疑问，<font color=Red>红色字体</font>代表关键重要信息，<u>下划线</u>代表次关键重要信息，`阴影`或 *一般斜体* 均表示引用或强调 
 
 ```python
 # ---------------------------------- 输出结果
@@ -32,6 +33,7 @@ Created by ALTA
 1. [编译入门：传说中的编译是在做什么](https://www.cnblogs.com/li--chao/p/9229927.html)
 2. [程序语言都是怎么发明的](https://www.zhihu.com/question/358636057/answer/917465056)  
 3. [图灵机与图灵完备](https://www.zhihu.com/question/20115374/answer/288346717)
+4. [Python执行过程](<https://www.cnblogs.com/jszd/p/11174832.html>)
 
 ## 编译的定义  
 
@@ -126,9 +128,17 @@ gcc hello.o -o hello
 
 ### 汇编过程  
 
+Left blank  
 
+## 编译型语言与解析型语言  
 
+所谓编译型语言就是源代码经过编译器编译处理，生成目标机器码，就是机器能直接运行的二进制代码，下次运行时无需重新编译。而解释型语言是在代码运行期间逐行翻译成目标机器码，下次执行时，还是需要逐行解释，我们可以简单认为 Java、Python 都是解释型语言，解释的工作由解释器完成。  
 
+### CPython是使用C语言开发的Python解释器  
+
+> CPython is Guido van Rossum’s reference version of the Python computing language. It’s most often called simply “Python”; speakers say “CPython” generally to distinguish it explicitly from other implementations.
+
+Python（这里主要是指CPython）并不是严格的解释型语言。因为 Python 代码在运行前，会先编译成中间代码，每个 .py 文件将被换转成 .pyc 文件，.pyc 就是一种字节码文件，它是与平台无关的中间代码，不管你放在 Windows 还是 Linux 平台都可以执行，运行时将由虚拟机逐行把字节码翻译成目标代码。我们安装Python 时候，会有一个 Python.exe 文件，它就是Python解释器，你写的每一行 Python代码都是由它负责执行，**解释器由一个编译器和一个虚拟机构成**，编译器负责将源代码转换成字节码文件，而虚拟机负责执行字节码，所以，解释型语言其实也有编译过程，只不过这个编译过程并不是直接生成目标代码，而是中间代码（字节码），然后再通过虚拟机来逐行解释执行字节码  
 
 ## 附录  
 
