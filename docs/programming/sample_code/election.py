@@ -4,9 +4,9 @@ import socket
 from selectors import DefaultSelector, EVENT_READ, EVENT_WRITE
 
 selectors = DefaultSelector()
-MARKET_ENDPOINT = 'test-market.aqumon.com'
+MARKET_ENDPOINT = '172.19.60.145'
 REQUEST_INFO = 'GET /v2/market/calendar/is_biz_day?date=2020-06-24&region=CN HTTP/1.0\r\n\r\n'
-THREAD_NUMBERS = 10
+THREAD_NUMBERS = 5
 
 
 # event loop + call back
@@ -16,35 +16,40 @@ class AsyncFirst(object):
     def __init__(self, thread_id):
         self.thread_id = thread_id
         self.response = []
+        self.sock = None
         super().__init__()
 
     def fetch(self):
-        s = socket.socket()
-        s.setblocking(False)
+        self.sock = socket.socket()
+        self.sock.setblocking(False)
+        print(self.sock.fileno())
         try:
-            s.connect((MARKET_ENDPOINT, 8003))
-        except socket.error as ex:
-            print(ex)
-        selectors.register(s.fileno(), EVENT_WRITE, self.make_request)
+            self.sock.connect((MARKET_ENDPOINT, 8003))
+        except BlockingIOError as ex:
+            pass
+        # 仅仅是注册(相当于把回调函数和文件fd和事件做了关联绑定， 但是epoll内部是如何判断connect已完成呢？ 因为只有在connect已完成，
+        # loop里面的select才会有。难道是不停查询fd,看fd是否有指定的事件(EVENT_WRITE)发生？又或者loop里面的select进行的工作就是不停
+        # 查询fd,看fd是否有指定的事件(EVENT_WRITE)发生)
+        selectors.register(self.sock.fileno(), EVENT_WRITE, self.make_request)
 
     def make_request(self, s, event):
-        selectors.unregister(s.fileno())
+        selectors.unregister(s.fd)
         try:
-            s.sendall(REQUEST_INFO.encode('utf-8'))
+            self.sock.send(REQUEST_INFO.encode('utf-8'))
         except socket.error as ex:
             print(ex)
-        selectors.register(s.fileno(), EVENT_READ, self.read_response)
+        selectors.register(s.fd, EVENT_READ, self.read_response)
 
     def read_response(self, s, event):
         global THREAD_NUMBERS
-        d = s.recv(1024)
+        d = self.sock.recv(1024)
         if d:
-            self.response.append(d)
+            self.response.append(d.decode('utf-8'))
         else:
-            print('{} is Done'.format(s.fileno()))
+            print('{} is Done'.format(self.sock.fileno()))
             print('The result is {}'.format(''.join(self.response)))
-            selectors.unregister(s.fileno())
-            s.close()
+            selectors.unregister(s.fd)
+            self.sock.close()
             THREAD_NUMBERS -= 1
 
 
@@ -67,6 +72,7 @@ class AsyncThird(object):
 
 
 if __name__ == '__main__':
+    # First Sample
     for i in range(THREAD_NUMBERS):
         thread = AsyncFirst(i)
         thread.fetch()
