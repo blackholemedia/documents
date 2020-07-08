@@ -1,5 +1,5 @@
 # coding=utf-8
-# 3 samples for python async
+# 4 samples for python async
 import socket
 from selectors import DefaultSelector, EVENT_READ, EVENT_WRITE
 
@@ -53,17 +53,99 @@ class AsyncFirst(object):
             THREAD_NUMBERS -= 1
 
 
-def loop():
+def loop1():
     while THREAD_NUMBERS:
         events = selectors.select()
+        # epoll 内部究竟如何记录事件的信息，仅仅只是记录回调函数的相关信息？
         for event in events:
             callback = event[0].data
             callback(event[0], event[1])
 
 
 # coroutine, yield from
+class Future(object):
+
+    def __init__(self):
+        self.result = None
+        self._callback = None
+
+    def set_result(self, status):
+        self.result = status
+        if self._callback:
+            self._callback(self)
+
+
+class Task(object):
+
+    def __init__(self, g):
+        self.g = g
+        f = Future()
+        self.move_forward(f)
+
+    def move_forward(self, future):
+        try:
+            next_future = self.g.send(future.result)
+        except StopIteration:
+            return
+        next_future._callback = self.move_forward
+
+
 class AsyncSecond(object):
-    pass
+
+    def __init__(self):
+        self.response = []
+        super().__init__()
+
+    def fetch(self):
+        sock = socket.socket()
+        sock.setblocking(False)
+        print(sock.fileno())
+        try:
+            sock.connect((MARKET_ENDPOINT, 8003))
+        except BlockingIOError as ex:
+            pass
+
+        f = Future()
+
+        def request_ready():
+            f.set_result(None)
+            # 实质上执行的是task的move_forward函数 request_ready->set_result->_callback->move_forward
+            # 回调函数的作用是驱动协程向前一步,因为协程(生成器)就是由于fetch方法生成的，因为生成器无法直接调用，所以增加future作为中间载体
+
+        selectors.register(sock.fileno(), EVENT_WRITE, request_ready)
+        yield f
+
+        selectors.unregister(sock.fileno())
+        try:
+            sock.send(REQUEST_INFO.encode('utf-8'))
+        except socket.error as ex:
+            print(ex)
+
+        def read_ready():
+            f.set_result(None)
+        selectors.register(sock.fileno(), EVENT_READ, read_ready)
+        yield f
+
+        global THREAD_NUMBERS
+        while True:
+            d = sock.recv(1024)
+            if d:
+                self.response.append(d.decode('utf-8'))
+                yield
+            else:
+                print('{} is Done'.format(sock.fileno()))
+                print('The result is {}'.format(''.join(self.response)))
+                selectors.unregister(sock.fileno())
+                sock.close()
+                THREAD_NUMBERS -= 1
+
+
+def loop2():
+    while THREAD_NUMBERS:
+        events = selectors.select()
+        for event in events:
+            callback = event[0].data
+            callback(event[0], event[1])
 
 
 # standard lib : async
@@ -73,7 +155,12 @@ class AsyncThird(object):
 
 if __name__ == '__main__':
     # First Sample
+    # for i in range(THREAD_NUMBERS):
+    #     thread = AsyncFirst(i)
+    #     thread.fetch()
+    # loop1()
+    # Second Sample
     for i in range(THREAD_NUMBERS):
-        thread = AsyncFirst(i)
-        thread.fetch()
-    loop()
+        thread = AsyncSecond()
+        thread.go_forward(thread.fetch())
+    loop2()
