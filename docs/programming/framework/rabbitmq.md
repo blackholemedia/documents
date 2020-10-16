@@ -23,10 +23,15 @@ Table of Contents
          * [如何保证可靠性](#如何保证可靠性)
          * [消息如何限流](#消息如何限流)
          * [集群设置](#集群设置)
+      * [101](#101)
+         * [Hello World](#hello-world)
+         * [Work Queue](#work-queue)
+         * [Publish and Subscribe](#publish-and-subscribe)
+         * [Routing](#routing)
+         * [Topics](#topics)
 
 Created by ALTA
 # RabbitMQ  
-<font color=limegreen>绿色字体</font>代表个人的思考理解，<font color=Yellow>黄色字体</font>代表阅读理解过程中的疑问，<font color=Red>红色字体</font>代表关键重要信息，<u>下划线</u>代表次关键重要信息，`阴影`或 *一般斜体* 均表示引用或强调 
 
 ```python
 # ---------------------------------- 输出结果
@@ -203,3 +208,11 @@ left blank
 ### Publish and Subscribe  
 
 left blank
+
+### Routing  
+
+left blank  
+
+### Topics  
+
+left blank  
