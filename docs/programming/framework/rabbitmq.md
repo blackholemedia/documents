@@ -189,3 +189,17 @@ left blank
 ### 集群设置  
 
 left blank
+
+## 101  
+
+### Hello World  
+
+<div align="center"> <img src="https://blackholemedia.github.io/documents/statics/python-one-overall-mq-queue.webp" width="400px"> </div><br>
+
+### Work Queue  
+
+left blank  
+
+### Publish and Subscribe  
+
+left blank
