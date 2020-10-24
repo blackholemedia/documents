@@ -7,5 +7,6 @@
 	* [Yield](/programming/python/yield.md "Yield")
 	* [魔术方法](/programming/python/magic_methods.md "魔术方法")
 	* [元类](/programming/python/meta_class.md "元类")
-	* [GIL]((/programming/python/meta_class.md "GIL")
+	* [GIL](/programming/python/GIL.md "GIL")  
+	* [Pandas](/programming/python/pandas.md "Pandas")
 
