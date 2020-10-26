@@ -36,7 +36,7 @@ Created by ALTA
 
 本文引用及参考自下列文章/网站， 版权归属原作者所有：
 
-1. 111111
+1. [完美二叉树, 完全二叉树和完满二叉树](https://www.cnblogs.com/idorax/p/6441043.html)
 
 
 
@@ -112,7 +112,7 @@ B+树
 
 ### 完美二叉树  
 
-树是满的，还是二叉的  
+(国内教材：满二叉树) 树是满的，还是二叉的  
 
 <div align="center"> <img src="https://blackholemedia.github.io/documents/statics/perfect_binary_tree.png" width="400px"> </div><br>
 
