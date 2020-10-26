@@ -3,7 +3,6 @@ Table of Contents
 =================
 
    * [Tree](#tree)
-      * [阅读说明](#阅读说明)
       * [参考引用](#参考引用)
       * [定义](#定义)
       * [基本概念](#基本概念)
@@ -17,6 +16,9 @@ Table of Contents
          * [中序遍历](#中序遍历)
       * [各种树之间关系](#各种树之间关系)
          * [二叉树](#二叉树)
+         * [完美二叉树](#完美二叉树)
+         * [完全二叉树](#完全二叉树)
+         * [完满二叉树](#完满二叉树)
          * [二叉查找树](#二叉查找树)
          * [AVL树](#avl树)
          * [伸展树](#伸展树)
@@ -24,7 +26,6 @@ Table of Contents
 
 Created by ALTA
 # Tree  
-
 <font color=#008000>绿色字体</font>代表个人的思考理解，<font color=Yellow>黄色字体</font>代表阅读理解过程中的疑问，<font color=Red>红色字体</font>代表关键重要信息，<u>下划线</u>代表次关键重要信息，`阴影`或 *一般斜体* 均表示引用或强调 
 
 ```python
@@ -87,7 +88,9 @@ Created by ALTA
 
 完美二叉树
 
-完全二叉树
+完全二叉树  
+
+完满二叉树
 
 二叉查找树
 
@@ -106,6 +109,24 @@ B+树
 1. 定义  
 
    每个节点不能有多于2个儿子的树，儿子可以为空
+
+### 完美二叉树  
+
+树是满的，还是二叉的  
+
+<div align="center"> <img src="https://blackholemedia.github.io/documents/statics/perfect_binary_tree.png" width="400px"> </div><br>
+
+### 完全二叉树  
+
+完全二叉树从根结点到倒数第二层满足完美二叉树，最后一层可以不完全填充，其叶子结点都靠左对齐  
+
+<div align="center"> <img src="https://blackholemedia.github.io/documents/statics/complete_binary_tree.png" width="400px"> </div><br>
+
+### 完满二叉树  
+
+所有非叶子结点的度都是2。（只要你有孩子，你就必然是有两个孩子）  
+
+<div align="center"> <img src="https://blackholemedia.github.io/documents/statics/full_binary_tree.png" width="400px"> </div><br>
 
 ### 二叉查找树  
 
