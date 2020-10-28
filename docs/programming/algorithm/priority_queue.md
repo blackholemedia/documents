@@ -67,7 +67,9 @@ $$
 
 ### 二叉堆的基本操作  
 
-二叉堆虽然是一颗完全二叉树，但它的存储方式并不是链式存储，而是顺序存储。换句话说，二叉堆的所有节点都存储在数组当中。
+二叉堆虽然是一颗完全二叉树，但它的存储方式并不是链式存储，而是顺序存储。换句话说，二叉堆的所有节点都存储在数组当中。数组中，在没有左右指针的情况下，如何定位到一个父节点的左孩子和右孩子呢？可以依靠数组下标来计算。假设父节点的**下标**是parent，那么它的左孩子下标就是 **2×parent+1**；它的右孩子下标就是  **2×parent+2**  
+
+<div align="center"> <img src="https://blackholemedia.github.io/documents/statics/binary_heap_array.webp" width="400px"> </div><br>
 
 1. 插入节点  
    - Symbol-prefix class
