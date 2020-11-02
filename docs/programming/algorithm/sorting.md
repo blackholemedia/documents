@@ -23,7 +23,8 @@ Created by ALTA
 本文引用及参考自下列文章/网站， 版权归属原作者所有：
 
 1. [排序的稳定性](https://www.cnblogs.com/yadiel-cc/p/11829360.html)  
-2. 
+2. [计数排序、计数排序与桶排序](https://blog.csdn.net/qq_19446965/article/details/81517552)  
+3. [桶排序](https://www.jianshu.com/p/204ed43aec0c)
 
 ### 
 
