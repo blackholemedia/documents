@@ -5,6 +5,7 @@ Table of Contents
    * [Celery](#celery)
       * [阅读说明](#阅读说明)
       * [参考引用](#参考引用)
+      * [问题背景](#问题背景)
       * [定义](#定义)
          * [任务队列](#任务队列)
          * [原理](#原理)
@@ -16,7 +17,11 @@ Table of Contents
       * [使用](#使用)
 
 Created by ALTA
+
+
+
 # Celery  
+## 阅读说明  
 
 <font color=#008000>绿色字体</font>代表个人的思考理解，<font color=Yellow>黄色字体</font>代表阅读理解过程中的疑问，<font color=Red>红色字体</font>代表关键重要信息，<u>下划线</u>代表次关键重要信息，`阴影`或 *一般斜体* 均表示引用或强调 
 
@@ -32,6 +37,10 @@ Created by ALTA
 2. [异步任务神器 Celery 快速入门教程](https://blog.csdn.net/chenqiuge1984/article/details/80127446)
 3. [celery 原理理解](https://www.cnblogs.com/Tommy-Yu/p/5955294.html)  
 4. [Celery基本原理探讨](https://blog.csdn.net/yang00322/article/details/77840637)
+
+## 问题背景  
+
+left blank
 
 ## 定义  
 

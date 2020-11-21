@@ -4,10 +4,6 @@
 	  * [Django URL](/programming/framework/django/Django_URL.md "Django URL")
 	  * [中间件](/programming/framework/django/中间件.md "中间件")
 	  * [Django基础](/programming/framework/django/django基础.md "Django 基础")
-	* [Celery](/programming/framework/celery.md "Celery")
-	* [Zookeeper](/programming/framework/zookeeper.md "Zookeeper")
-	* [Flink](/programming/framework/flink.md "Flink")
-	* [RabbitMQ](/programming/framework/rabbitmq.md "RabbitMQ")
-	* [Kafka](/programming/framework/kafka.md "Kafka")
+
 
 
