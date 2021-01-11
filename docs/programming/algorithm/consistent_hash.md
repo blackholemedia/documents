@@ -2,15 +2,16 @@
 Table of Contents
 =================
 
-   * [template](#template)
-      * [first-class title](#first-class-title)
-         * [second-class title](#second-class-title)
-      * [first-class title](#first-class-title-1)
-         * [second-class title](#second-class-title-1)
+   * [一致性哈希](#一致性哈希)
+      * [阅读说明](#阅读说明)
+      * [参考引用](#参考引用)
+      * [定义](#定义)
+      * [问题背景](#问题背景)
+      * [基本概念、架构与处理过程](#基本概念架构与处理过程)
+         * [基本处理过程](#基本处理过程)
 
 Created by ALTA
-# Template  
-## 阅读说明  
+# 一致性哈希  
 
 <font color=#008000>绿色字体</font>代表个人的思考理解，<font color=Yellow>黄色字体</font>代表阅读理解过程中的疑问，<font color=Red>红色字体</font>代表关键重要信息，<u>下划线</u>代表次关键重要信息，`阴影`或 *一般斜体* 均表示引用或强调 
 
@@ -23,26 +24,7 @@ Created by ALTA
 本文引用及参考自下列文章/网站， 版权归属原作者所有：
 
 1. [每天进步一点点——五分钟理解一致性哈希算法](https://blog.csdn.net/cywosp/article/details/23397179/)  
-2. [使用 HashRing 实现 Python 下的一致性哈希算法](https://www.dazhuanlan.com/2019/12/14/5df40e603b81a/)
-
-### 
-
-<div align="center"> <img src="https://blackholemedia.github.io/documents/statics/417bc315-4409-48c6-83e0-59e8d405429e.jpg" width="400px"> </div><br>
-
-Content 
-
-数学公式
-$$
-f'(t)=\lim_{\Delta t \to 0}\frac{f(t + \Delta t)-f(t)}{\Delta t}
-$$
-
-1. Number-prefix class  
-
-   Content 
-
-   - Symbol-prefix class 
-
-     Content 
+2. [使用 HashRing 实现 Python 下的一致性哈希算法](https://www.dazhuanlan.com/2019/12/14/5df40e603b81a/)  
 
 ## 定义  
 
@@ -88,7 +70,7 @@ Left blank
 
 一致性hash算法提出了在动态变化的Cache环境中，判定哈希算法好坏的四个定义: 
 
-- 平衡性(Balance)：平衡性是指哈希的结果能够尽可能分布到所有的缓冲中去，这样可以使得所有的缓冲空间都得到利用。很多哈希算法都能够满足这一条件  
+- 平衡性(Balance)：平衡性是指哈希的结果能够尽可能分布到所有的缓冲中去，这样可以使得所有的缓冲空间都得到利用。很多哈希算法都能够满足这一条件(<font color=#008000>即均匀</font>)  
 - 单调性(Monotonicity)：单调性是指如果已经有一些内容通过哈希分派到了相应的缓冲中，又有新的缓冲加入到系统中。哈希的结果应能够保证原有已分配的内容可以被映射到原有的或者新的缓冲中去，而不会被映射到旧的缓冲集合中的其他缓冲区  
 - 分散性(Spread)：在分布式环境中，终端有可能看不到所有的缓冲，而是只能看到其中的一部分。当终端希望通过哈希过程将内容映射到缓冲上时，由于不同终端所见的缓冲范围有可能不同，从而导致哈希的结果不一致，最终的结果是相同的内容被不同的终端映射到不同的缓冲区中。这种情况显然是应该避免的，因为它导致相同内容被存储到不同缓冲中去，降低了系统存储的效率。分散性的定义就是上述情况发生的严重程度。好的哈希算法应能够尽量避免不一致的情况发生，也就是尽量降低分散性
 - 负载(Load)：负载问题实际上是从另一个角度看待分散性问题。既然不同的终端可能将相同的内容映射到不同的缓冲区中，那么对于一个特定的缓冲区而言，也可能被不同的用户映射为不同 的内容。与分散性一样，这种情况也是应当避免的，因此好的哈希算法应能够尽量降低缓冲的负荷
@@ -98,9 +80,9 @@ Left blank
 对节点和数据，都做一次哈希运算，然后比较节点和数据的哈希值，数据取和节点最相近的节点做为存放节点。这样就保证当节点增加或者减少的时候，影响的数据最少。
 
 1. 构建环形hash空间 
-   
+
    按照常用的hash算法来将对应的key哈希到一个具有2^32次方个桶的空间中，即0~(2^32)-1的数字空间中。现在我们可以将这些数字头尾相连，想象成一个闭合的环形
-   
+
 2. 将机器通过hash算法映射到环上
 
    假设现在有NODE1，NODE2，NODE3三台机器，通过Hash算法得到对应的KEY值，映射到环中，其示意图如下：
@@ -122,9 +104,18 @@ Left blank
    Hash(object4) = key4；
    ```
 
-   
+   通过上图可以看出对象与机器处于同一哈希空间中，这样按**顺时针转动**object1存储到了NODE1中，object3存储到了NODE2中，object2、object4存储到了NODE3中。在这样的部署环境中，hash环是不会变更的，因此，通过算出对象的hash值就能快速的定位到对应的机器中，这样就能找到对象真正的存储位置了  
 
-4. 哈哈哈哈
+4. 机器增减  
 
-   - Symbol-prefix class
-   - 
+   以上面的分布为例，如果NODE2出现故障被删除了，那么按照顺时针迁移的方法，object3将会被迁移到NODE3中，这样仅仅是object3的映射位置发生了变化，其它的对象没有任何的改动，删除同理。如下图：
+
+   <div align="center"> <img src="https://blackholemedia.github.io/documents/statics/consistent_hash_delete_node.png" width="400px"> </div><br>
+
+5. 解决平衡性  
+
+   <div align="center"> <img src="https://blackholemedia.github.io/documents/statics/consistent_hash_unbalance.jpg" width="400px"> </div><br>
+
+   “虚拟节点”（ virtual node ）是实际节点（机器）在 hash 空间的复制品（ replica ），一实际个节点（机器）对应了若干个“虚拟节点”，这个对应个数也成为“复制个数”，“虚拟节点”在 hash 空间中以hash值排列.(<font color=#008000>通过增加节点使得hash空间变得相对均匀</font>)  
+
+   <div align="center"> <img src="https://blackholemedia.github.io/documents/statics/consistent_hash_vnode.png" width="400px"> </div><br>
