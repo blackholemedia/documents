@@ -1,8 +1,8 @@
-![logo](./statics/iconfinder_mac_os_X_395229.png)
+![logo](./statics/O23.png)
 
 # 彼岸无渡
 
-> 曾在过去，又在未来，既在此处，也在别处
+> 对未来最大的慷慨，就是把一切都献给现在
 
 [GitHub](https://github.com/blackholemedia/documents.git)
 [Get Started](#quick-start)
